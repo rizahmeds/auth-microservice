@@ -54,41 +54,49 @@ Prerequisites
 Installation
 ------------
 
-1.  Clone the repository:
-    
+1. Clone the repository:
+```
+git clone https://github.com/rizahmeds/auth-microservice
+cd fastapi-auth-microservice
+```
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopygit clone   cd fastapi-auth-microservice   `
+2. Create and activate a virtual environment:
+```
+# Windows
+python -m venv venv
+.\venv\Scripts\activate
 
-1.  Create and activate a virtual environment:
-    
+# Linux/MacOS
+python3 -m venv venv
+source venv/bin/activate
+```
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopy# Windows  python -m venv venv  .\venv\Scripts\activate  # Linux/MacOS  python3 -m venv venv  source venv/bin/activate   `
+3. Install dependencies:
+```    
+pip install -r requirements.txt
+```
 
-1.  Install dependencies:
-    
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopypip install -r requirements.txt   `
-
-1.  Create a .env file in the project root:
-    
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   envCopyDATABASE_URL=sqlite:///./users.db  SECRET_KEY=your-secure-secret-key   `
+4. Create a .env file in the project root:
+```    
+DATABASE_URL=sqlite:///./users.db  
+SECRET_KEY=your-secure-secret-key 
+```
 
 Running the Service
 -------------------
 
-1.  Start the server:
-    
+1. Start the server:
+```
+uvicorn main:app --reload
+```
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopyuvicorn main:app --reload   `
-
-1.  The service will be available at:
+2. The service will be available at:
     
-    *   API: [http://localhost:8000](http://localhost:8000)
+    * API: [http://localhost:8000](http://localhost:8000)
         
-    *   Documentation: [http://localhost:8000/docs](http://localhost:8000/docs)
+    * Documentation: [http://localhost:8000/docs](http://localhost:8000/docs)
         
-    *   OpenAPI Spec: [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json)
+    * OpenAPI Spec: [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json)
         
 
 API Endpoints
@@ -104,41 +112,45 @@ API Endpoints
         
 *   **POST /token**
     
-    *   Login and obtain access token
+    * Login and obtain access token
         
-    *   Form fields: username, password
+    * Form fields: username, password
         
-    *   Returns JWT token
+    * Returns JWT token
         
 
 ### Protected Endpoints
 
 *   **GET /users/me**
     
-    *   Get current user information
+    * Get current user information
         
-    *   Requires Bearer token authentication
+    * Requires Bearer token authentication
         
 
 Usage Examples
 --------------
 
 ### Register a New User
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopycurl -X POST "http://localhost:8000/register" \       -H "Content-Type: application/json" \       -d '{"email":"user@example.com","username":"user123","password":"secure_password"}'   `
+```
+curl -X POST "http://localhost:8000/register" \       -H "Content-Type: application/json" \       -d '{"email":"user@example.com","username":"user123","password":"secure_password"}'
+```
 
 ### Login and Get Token
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopycurl -X POST "http://localhost:8000/token" \       -H "Content-Type: application/x-www-form-urlencoded" \       -d "username=user123&password=secure_password"   `
+```
+curl -X POST "http://localhost:8000/token" \       -H "Content-Type: application/x-www-form-urlencoded" \       -d "username=user123&password=secure_password"
+```
 
 ### Get User Profile
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopycurl -X GET "http://localhost:8000/users/me" \       -H "Authorization: Bearer your_access_token"   `
+```
+curl -X GET "http://localhost:8000/users/me" \       -H "Authorization: Bearer your_access_token"
+```
 
 Project Structure
 -----------------
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Copy├── main.py           # FastAPI application and routes  ├── models.py         # SQLAlchemy models  ├── schemas.py        # Pydantic schemas for request/response  ├── database.py      # Database configuration  ├── auth.py          # Authentication utilities  ├── requirements.txt # Project dependencies  └── .env            # Environment variables   `
+```
+├── main.py           # FastAPI application and routes  ├── models.py         # SQLAlchemy models  ├── schemas.py        # Pydantic schemas for request/response  ├── database.py      # Database configuration  ├── auth.py          # Authentication utilities  ├── requirements.txt # Project dependencies  └── .env            # Environment variables
+```
 
 Security Considerations
 -----------------------
@@ -156,8 +168,9 @@ Development
 -----------
 
 ### Running Tests
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopypytest   `
+```
+pytest
+```
 
 ### Code Style
 
