@@ -35,7 +35,7 @@ A robust and secure user authentication microservice built with FastAPI, providi
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/rizahmeds/auth-microservice
 cd fastapi-auth-microservice
 ```
 
@@ -131,9 +131,9 @@ curl -X GET "http://localhost:8000/users/me" \
 ├── models.py         # SQLAlchemy models
 ├── schemas.py        # Pydantic schemas for request/response
 ├── database.py       # Database configuration
-├── auth.py          # Authentication utilities
+├── auth.py           # Authentication utilities
 ├── requirements.txt  # Project dependencies
-└── .env             # Environment variables
+└── .env              # Environment variables
 ```
 
 ## Security Considerations
